@@ -1,0 +1,26 @@
+﻿
+@using PagedList;
+@using PagedList.Mvc;
+<div style="margin: 10px 8%;">
+    @foreach (var item in (PagedList<News>)ViewBag.News)
+    {
+        <div style="display:flex;justify-content:space-between">
+            <div style="width:60%;">
+                <img src="~/Attach/@item.image" style="width:100px;height:100px;float:left;padding:10px;border-radius:15px;" />
+                <h3>@item.title</h3>
+            </div>
+            <div>
+                @Ajax.ActionLink("Details", "details", new { id = item.news_id }, new AjaxOptions()
+           {
+               UpdateTargetId = "div2",
+               InsertionMode = InsertionMode.Replace,
+               OnComplete = "showmodal"
+           })
+                @Html.ActionLink("Edit", "edit", new { id = item.news_id }, new { @class = "btn btn-info" })
+                @Html.ActionLink("Delete", "delete", new { id = item.news_id }, new { @class = "btn btn-danger", onclick = "return confirm('Sure to delete?')" })
+            </div>
+        </div>
+        <hr />
+    }
+    @Html.PagedListPager((PagedList<News>)ViewBag.News, n => Url.Action("index", new { pageno = n }))
+</div>

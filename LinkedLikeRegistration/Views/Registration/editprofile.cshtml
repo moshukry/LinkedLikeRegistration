@@ -1,0 +1,60 @@
+﻿@model User
+@{
+    ViewBag.Title = "editprofile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Profile</h2>
+
+<div class="ml-4 container-fluid">
+    <form method="post" enctype="multipart/form-data">
+        @Html.HiddenFor(n => n.user_id)
+        <div class="form-group">
+            <img src="~/attach/@Model.photo" width="100" height="100" />
+            <input type="file" name="photo" />
+        </div>
+        <div class="form-group">
+            <div class="">@Html.LabelFor(n => n.username)</div>
+            <div class="">@Html.TextBoxFor(n => n.username, new { @class = "form-control" })</div>
+            <div class="">@Html.ValidationMessageFor(n => n.username)</div>
+        </div>
+        <div class="form-group">
+            <div>@Html.LabelFor(n => n.email)</div>
+            <div>@Html.TextBoxFor(n => n.email, new { @class = "form-control" })</div>
+            <div>@Html.ValidationMessageFor(n => n.email)</div>
+        </div>
+        <div class="form-group">
+            <div>@Html.LabelFor(n => n.age)</div>
+            <div>@Html.TextBoxFor(n => n.age, new { @class = "form-control" })</div>
+            <div>@Html.ValidationMessageFor(n => n.age)</div>
+        </div>
+        <div class="form-group">
+            <div>@Html.LabelFor(n => n.address)</div>
+            <div>@Html.TextBoxFor(n => n.address, new { @class = "form-control" })</div>
+            <div>@Html.ValidationMessageFor(n => n.address)</div>
+        </div>
+        <div class=" form-group">
+            <a href="~/attach/@Model.resume">my resume</a>
+            <input type="file" name="resume" />
+        </div>
+        <div class="form-group">
+            <div>@Html.LabelFor(n => n.Skills)</div>
+            <div>
+                @foreach (var item in (List<Skill>)ViewBag.sk)
+                {
+                    @Html.CheckBox(item.skill_name, new { @class = "col-md-1" });
+                    @Html.Label(item.skill_name, new { @class = "col-md-5" });
+                }
+            </div>
+        </div>
+
+        <input type="submit" class="btn btn-success" />
+
+    </form>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}

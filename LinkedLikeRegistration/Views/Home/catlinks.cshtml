@@ -1,0 +1,14 @@
+﻿<div class="navbar-collapse collapse" style="padding: 0; display: flex !important; justify-content: space-between">
+    <ul class="nav navbar-nav" style="width:65%;margin:0; display:flex;justify-content:space-between">
+        @Html.Label("Catalogs")
+        @foreach (var item in (List<Catalog>)ViewBag.cats)
+        {
+            <li><input class="btn btn-default btn_cat" type="button" id="@item.cat_id" value="@item.cat_name" /></li>
+        }
+    </ul>
+    <div>
+        <span>@Html.Label("Sort By")</span>
+        <span><button id="title_sort" class="btn btn_success" value="title">Title</button></span>
+        <span><button id="bref_sort" class="btn btn_success">bref</button></span>
+    </div>
+</div>

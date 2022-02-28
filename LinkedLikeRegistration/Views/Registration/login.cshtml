@@ -1,0 +1,36 @@
+﻿@model User
+@{
+    ViewBag.Title = "login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form method="post">
+    <div class="global-container">
+        <div class="card login-form">
+            <div class="card-body" style="width:25% ; margin:auto;">
+                <h3 class="card-title text-center">Log In</h3>
+                <div class="card-text">
+                    <p class="text-danger">@ViewBag.invalid</p>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        @Html.TextBoxFor(n => n.email, new { @class = "form-control form-control-sm" })
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        @Html.PasswordFor(n => n.password, new { @class = "form-control form-control-sm" })
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">@Html.CheckBox("doremember")Rememeber Me</div>
+                    </div>
+                    <br />
+                    <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                    <br />
+                    <div class="sign-up">
+                        Don't have an account? <a href="/registration/register">Create One</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,44 @@
+﻿@model News
+<div class="ml-4">
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <div class="">@Html.LabelFor(n => n.title)</div>
+            <div class="">@Html.TextBoxFor(n => n.title, new { @class = "form-control" })</div>
+            <div class="">@Html.ValidationMessageFor(n => n.title)</div>
+        </div>
+        @Html.HiddenFor(n => n.news_id)
+        <div class="form-group">
+            <div>@Html.LabelFor(n => n.bref)</div>
+            <div>@Html.TextBoxFor(n => n.bref, new { @class = "form-control" })</div>
+            <div>@Html.ValidationMessageFor(n => n.bref)</div>
+        </div>
+        <div class="form-group">
+            <div>@Html.LabelFor(n => n.describtion)</div>
+            <div>@Html.TextBoxFor(n => n.describtion, new { @class = "form-control" })</div>
+            <div>@Html.ValidationMessageFor(n => n.describtion)</div>
+        </div>
+        <div class="form-group">
+            <div>@Html.LabelFor(n => n.datetime)</div>
+            <div>@Html.TextBoxFor(n => n.datetime, new { @type = "date", @class = "form-control" })</div>
+            <div>@Html.ValidationMessageFor(n => n.datetime)</div>
+        </div>
+        <div class="form-group">
+            <img style="width:100px;height:100px;" src="~/Attach/@Model.image" alt="Alternate Text" />
+            <div>@Html.LabelFor(n => n.image)</div>
+            <div><input type="file" name="image" accept="image/*" /></div>
+            <div></div>
+        </div>
+        <div class="form-group">
+            <div>@Html.LabelFor(n => n.Catalog)</div>
+            <div>@Html.DropDownListFor(n => n.cat_id, (SelectList)ViewBag.cats, new { @class = "form-control" })</div>
+        </div>
+        <input type="submit" class="btn btn-success" id="sub" />
+    </form>
+</div>
+
+@section scripts{
+
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

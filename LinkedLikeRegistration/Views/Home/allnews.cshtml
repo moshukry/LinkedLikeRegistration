@@ -1,0 +1,33 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "allnews";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="padding:20px">
+    <div class="navbar-collapse collapse" style="padding: 0; display: flex !important; justify-content: space-between">
+        <ul class="nav navbar-nav" style="width:85%;margin:0; display:flex;justify-content:space-between">
+            <li class="py-2">Catalogs</li>
+            <li>@Html.ActionLink("ALL", "allnews")</li>
+            @foreach (var item in (List<Catalog>)ViewBag.cats)
+            {
+                <li>@Html.ActionLink(item.cat_name, "allnews", new { cat_id = item.cat_id  }, new { @class = "btn btn-success" })</li>
+            }
+        </ul>
+    </div>
+    <div style="margin: 10px 8%;">
+        @foreach (var item in (PagedList<News>)ViewBag.News)
+        {
+            <div style="display:flex;justify-content:space-between">
+                <div style="width:60%;">
+                    <img src="~/Attach/@item.image" style="width:100px;height:100px;float:left;padding:10px;border-radius:15px;" />
+                    <h3>@item.title</h3>
+                    <h6>@item.bref</h6><span>@item.datetime</span>
+                    <p>@item.describtion</p>
+                </div>
+            </div>
+            <hr />
+        }
+        @Html.PagedListPager((PagedList<News>)ViewBag.News, n => Url.Action("allnews", new { pageno = n }))
+    </div>
+</div>

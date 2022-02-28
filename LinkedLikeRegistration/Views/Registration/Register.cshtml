@@ -1,0 +1,71 @@
+﻿@using LinkedLikeRegistration.ViewModels
+@model User_Skills
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Register</h2>
+
+<div class="ml-4">
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <div class="">@Html.LabelFor(n => n.user.username)</div>
+            <div class="">@Html.TextBoxFor(n => n.user.username, new { @class = "form-control" })</div>
+            <div class="">@Html.ValidationMessageFor(n => n.user.username)</div>
+        </div>
+        <div class="form-group">
+            <div>@Html.LabelFor(n => n.user.password)</div>
+            <div>@Html.PasswordFor(n => n.user.password, new { @class = "form-control" })</div>
+            <div>@Html.ValidationMessageFor(n => n.user.password)</div>
+        </div>
+        <div class="form-group">
+            <div>@Html.LabelFor(n => n.user.confirm_password)</div>
+            <div>@Html.PasswordFor(n => n.user.confirm_password, new { @class = "form-control" })</div>
+            <div>@Html.ValidationMessageFor(n => n.user.confirm_password)</div>
+        </div>
+        <div class="form-group">
+            <div>@Html.LabelFor(n => n.user.email)</div>
+            <div>@Html.TextBoxFor(n => n.user.email, new { @class = "form-control" })</div>
+            <div>@Html.ValidationMessageFor(n => n.user.email)</div>
+        </div>
+        <div class="form-group">
+            <div>@Html.LabelFor(n => n.user.age)</div>
+            <div>@Html.TextBoxFor(n => n.user.age, new { @class = "form-control" })</div>
+            <div>@Html.ValidationMessageFor(n => n.user.age)</div>
+        </div>
+        <div class="form-group">
+            <div>@Html.LabelFor(n => n.user.address)</div>
+            <div>@Html.TextBoxFor(n => n.user.address, new { @class = "form-control" })</div>
+            <div>@Html.ValidationMessageFor(n => n.user.address)</div>
+        </div>
+        <div class="form-group">
+            <div>@Html.LabelFor(n => n.user.photo)</div>
+            <div><input type="file" name="photo" accept="image/*" /></div>
+            <div>@Html.ValidationMessageFor(n => n.user.photo)</div>
+        </div>
+        <div class="form-group">
+            <div>@Html.LabelFor(n => n.user.resume)</div>
+            <div><input type="file" name="resume" accept=".pdf" /></div>
+            <div>@Html.ValidationMessageFor(n => n.user.resume)</div>
+        </div>
+            <div>@Html.LabelFor(n => n.user.Skills)</div>
+        <div class="form-group">
+            <div>
+                @for(int i = 0;i<Model.skills.Count();i++)
+                 {
+                     @Html.CheckBoxFor(n => n.skills[i].isChecked, new { @class = "col-md-1" });
+                      <p class = "col-md-5">@Html.DisplayFor(n => n.skills[i].skill_name)</p>
+                         @Html.HiddenFor(n => n.skills[i].skill_id);
+                     }
+            </div>
+        </div>
+        <input type="submit" class="btn btn-success" />
+    </form>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}
